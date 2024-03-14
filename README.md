@@ -120,17 +120,19 @@ or
 or    
 ...by assigning a keyboard shortcut to _"PiperTTS Manager/Window/Toggle Window"_ in X-Plane's keyboard settings window.
 
-General hints:   
-**Most, if not all, items have tooltips!**    
-After having typed a value into any text/number input box, click anywhere in PTTSM's window to leave it, otherwise it will keep focus, eating up all keyboard inputs (see "Known Issues" section below).   
-Undesired values in text/number input boxes that were just entered can be discarded  by pressing the "ESC" key.  
-Window visibility, size and position are automatically saved when exiting X-Plane.
+General hints:
+- **Most, if not all, items have tooltips!**    
+- After having typed a value into any text/number input box, click anywhere in PTTSM's window to leave it, otherwise it will keep focus, eating up all keyboard inputs (see "Known Issues" section below).
+- Undesired values in text/number input boxes that were just entered can be discarded  by pressing the "ESC" key.
+- Window visibility, size and position are automatically saved when exiting X-Plane.
+
+All paths stated below are relative to the FlyWithLua installation folder within X-Plane's installation folder.
 
 &nbsp;
 
 **5.1 - UI: Interface selector**
 
-The interface selector lists all the available MTTSM interfaces found in `FlyWithLua/Modules/PiperTTSManager/Interfaces` at script startup. Pressing the _"Rescan"_ button rescans that folder and rebuilds the list of available interfaces.   
+The interface selector lists all the available MTTSM interfaces found in _"FlyWithLua/Modules/PiperTTSManager/Interfaces"_ at script startup. Pressing the _"Rescan"_ button rescans that folder and rebuilds the list of available interfaces.   
 **Selecting an interface is only necessary for reviewing its settings or for editing it. All plugin interfaces stored in the interface folder are automatically processed at X-Plane session start and continuously monitored as long as X-Plane is running!**
 
 &nbsp;
@@ -145,10 +147,10 @@ Text input boxes additionally will lose any changes unless in "Edit" mode.
 
 **5.3 - UI: Interface settings (edit mode)**
 
-The edit mode for the interface can be enabled with the _"Enable Edit Mode"_ button. Picking _"Create New Interface"_ from the interface selector will automatically enter edit mode.   
+The edit mode for the interface can be enabled with the "Enable Edit Mode" button. Picking "Create New Interface" from the interface selector will automatically enter edit mode.   
 **When in edit mode, the watchdog that scans for input text files for text-to-speech processing is disabled.**   
-Changes made in edit mode may be saved to the interface configuration file (existing or new) by pressing the _"Save Interface Configuration File"_ button.   
-Disabling edit mode for an existing interface after having made changes will retain these new values until the _"Rescan"_ button next to the interface selector is pressed. This will trigger a complete reload of all available interfaces.
+Changes made in edit mode may be saved to the interface configuration file (existing or new) by pressing the "Save Interface Configuration File" button.   
+Disabling edit mode for an existing interface after having made changes will retain these new values until the "Rescan" button next to the interface selector is pressed. This will trigger a complete reload of all available interfaces.
 
 &nbsp;
 
@@ -162,13 +164,13 @@ Enter a string that should be spoken, pick a voice and hit the _"Speak"_ button.
 
 **5.5 - Settings File**
 
-The path to PTTSM's settings file is: `FlyWithLua/Modules/PiperTTSManager/settings.cfg`. You can edit or delete it when X-Plane is not running.
+The path to PTTSM's settings file is: _"FlyWithLua/Modules/PiperTTSManager/settings.cfg"_. You can edit or delete it when X-Plane is not running.
 
 &nbsp;
 
 **5.6 - Log**
 
-PTTSM writes its log to: `FlyWithLua/Modules/PiperTTSManager/PTTSM_Log.txt`. The log is regenerated at every script start.
+PTTSM writes its log to: _"FlyWithLua/Modules/PiperTTSManager/PTTSM_Log.txt"_. The log is regenerated at every script start.
 
 [Back to table of contents](#toc)
 
@@ -191,3 +193,5 @@ PTTSM writes its log to: `FlyWithLua/Modules/PiperTTSManager/PTTSM_Log.txt`. The
 ## 7 - License
 
 Piper TTS Manager is licensed under the European Union Public License v1.2 (see _EUPL-1.2-license.txt_). Compatible licenses (e.g. GPLv3) are listed  in the section "Appendix" in the license file.
+
+[Back to table of contents](#toc)
