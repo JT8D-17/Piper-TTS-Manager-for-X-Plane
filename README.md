@@ -21,18 +21,19 @@ Piper TTS Manager is an adaption of the [MaryTTS Manager](https://github.com/JT8
 
 **Compatibility:**
 
-Linux: Development platform; extensively tested   
-Windows 10: Works, but has only been tested a little   
-MacOS/OSX: Unknown due to a lack of willing and able testers
+- Confirmed working on Arch Linux, Fedora 39, Ubuntu 22.04, Windows 11 and MacOS so far.
+- Does not support X-Plane's Steam release!
+- X-Plane 11 is untested.
+- Windows only: A console window will quickly pop up and close, momentarily taking focus from X-Plane when in full screen mode. This is Windows default behavior which I've tried for hours to work around with all kinds of command and PowerShell voodoo and failed miserably. For [SimpleATC](https://www.stickandrudderstudios.com/x-atc-chatter-project/) usage, it is recommended to simply use the default Windows SpeechAPI voices instead (see X-ATC-Chatter user guide).
+- Also see "[Known Issues](#issues)" below.
 
 **Requirements:**
 
-- All: [X-Plane 11](https://www.x-plane.com/) (version 11.50 or higher)
-- All: [FlyWithLuaNG](https://forums.x-plane.org/index.php?/files/file/38445-flywithlua-ng-next-generation-edition-for-x-plane-11-win-lin-mac/) (version 2.7.28 or higher)
-- Linux: System packages providing the _curl_, _kill_, _ls_ and _pgrep_ commands
-- Windows: Any version that provides the _curl_, _dir_, _start_,  _taskkill_ and _tasklist_ commands (Windows 10 or newer)
+- [X-Plane](https://www.x-plane.com/), version 11.50, 12.00 or newer)
+- FlyWithLua:
+  - X-Plane 11: [FlyWithLuaNG](https://forums.x-plane.org/index.php?/files/file/38445-flywithlua-ng-next-generation-edition-for-x-plane-11-win-lin-mac/) (version 2.7.28 or higher)
+  - X-plane 12: [FlyWithLuaNG+](https://forums.x-plane.org/index.php?/files/file/82888-flywithlua-ng-next-generation-plus-edition-for-x-plane-12-win-lin-mac/) (version 2.8.1 or higher)
 
-**Please check and confirm that your system fulfills the operating system specific requirements before installing MTTSM!**
 
 [Back to table of contents](#toc)
 
@@ -41,9 +42,28 @@ MacOS/OSX: Unknown due to a lack of willing and able testers
 <a name="install"></a>
 ## 2 - Installation
 
+Because of the file sizes involved, PiperTTS Manager is dfelivered as a self-assmbly kit.   
+All paths are relative to the X-Plane 11/12 main installation folder.
+
 - Click "Code" --> "Download ZIP" or use [this link](https://github.com/JT8D-17/Piper-TTS-Manager-for-X-Plane/archive/refs/heads/main.zip).
 - Unzip the archive and copy the "Scripts" and "Modules" folders into _"X-Plane 11/Resources/plugins/FlyWithLua/"_
-
+- Download Piper's latest release for your operating system from [this Piper TTS fork](https://github.com/TheLouisHong/piper/releases):
+  - Linux x86-64: _piper_linux_x86_64.tar.gz_
+  - Windows: _piper_windows_amd64.zip_
+  - Mac M1/2/3: _piper_macos_aarch64.tar.gz_
+  - Mac (other): _piper_macos_x64.tar.gz_
+- Unzip the downloaded file
+- Move the content of the unzipped _"piper"_ folder (not the folder itself!) to:
+  - **Linux:** "Resources/plugins/FlyWithLua/Modules/PiperTTSManager/Resources/Piper_LIN"
+  - **Windows:** "Resources/plugins/FlyWithLua/Modules/PiperTTSManager/Resources/Piper_WIN"
+  - **Mac:** "Resources/plugins/FlyWithLua/Modules/PiperTTSManager/Resources/Piper_MAC"
+- Go to the [PiperTTS voice repository](https://huggingface.co/rhasspy/piper-voices/tree/main)
+- Pick any voice(s) you want from the "en" folder (at least download "en/en_US/lessac/medium" because the SimpleATC interface is preconfigured for it)
+- The download and installation steps for each voice you pick are the same.
+- In the folder of the voice in the repository, download the **.onnx** and **.onnx.json** files (download icon to the right of the file name)
+- **After the download, the onnx.json file may need to be renamed. It must(!) have the same(!!) filename as the voice, just with an .onnx.json extension (e.g. _en_US-lessac-medium.onnx_ and _en_US-lessac-medium.onnx.json_)!**
+- Move both voice files into _"Resources/plugins/FlyWithLua/Modules/PiperTTSManager/Resources/piper_voices"_.
+- Repeat for any desired voice. (Note that PTTSM does not support subfolders in "piper_voices".)
 
 [Back to table of contents](#toc)
 
@@ -52,8 +72,10 @@ MacOS/OSX: Unknown due to a lack of willing and able testers
 <a name="uninstall"></a>
 ## 3 - Uninstallation
 
-- Delete _PiperTTSManager.lua_ from _"X-Plane [11/12]/Resources/plugins/FlyWithLua/Scripts"_
-- Delete _"PiperTTSManager"_ from _"X-Plane [11/12]/Resources/plugins/FlyWithLua/Modules"_
+All paths are relative to the X-Plane 11/12 main installation folder.
+
+- Delete _PiperTTSManager.lua_ from _"Resources/plugins/FlyWithLua/Scripts"_
+- Delete _"PiperTTSManager"_ from _"Resources/plugins/FlyWithLua/Modules"_
 
 
 [Back to table of contents](#toc)
@@ -153,25 +175,19 @@ PTTSM writes its log to: `FlyWithLua/Modules/PiperTTSManager/PTTSM_Log.txt`. The
 &nbsp;
 
 <a name="issues"></a>
-## 7 - Known issues
+## 6 - Known issues
 
-- There is a slight delay between sending a string to the server and hearing it due to the required processing from text to speech.
+- There is a delay between sending a string to the server and hearing it due to the required processing from text to speech.
+- There may be a short stutter in X-Plane while an output audio file is generated.
 - Voice quality may be too low for some people, but this is as good as it gets with MaryTTS.
-- MaryTTS still has bugs, especially with [strings with apostrophes](https://github.com/marytts/marytts/issues/817). MTTSM attempts to expand such strings (e.g. "you're" --> "you are") but naturally can't catch all of them (see *MTTSM_PhoneticCorrections* in *Modules/MaryTTSManager/Lua/MTTSM_Main.lua*), so it's best to avoid contractions where possible.
 - Text input boxes will not automatically unfocus. Click anywhere inside the UI to unfocus them.
-- Checking for the server process may produce system stutters, especially on Windows
-- Checking for an input file or playing back an output wave file may slightly degrade simulator performance
-
+- Checking for an input file or playing back an output wave file may slightly degrade simulator performance.
 
 [Back to table of contents](#toc)
 
 &nbsp;
 
 <a name="license"></a>
-## 8 - License
+## 7 - License
 
-MaryTTS Manager is licensed under the European Union Public License v1.2 (see _EUPL-1.2-license.txt_). Compatible licenses (e.g. GPLv3) are listed  in the section "Appendix" in the license file.
-
-[MaryTTS license](https://github.com/marytts/marytts/blob/master/LICENSE.md)
-
-[Adoptium license](https://adoptium.net/docs/faq/)
+Piper TTS Manager is licensed under the European Union Public License v1.2 (see _EUPL-1.2-license.txt_). Compatible licenses (e.g. GPLv3) are listed  in the section "Appendix" in the license file.
