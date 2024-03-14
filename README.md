@@ -130,14 +130,14 @@ All paths stated below are relative to the FlyWithLua installation folder within
 
 &nbsp;
 
-**5.1 - UI: Interface selector**
+**UI: Interface selector**
 
 The interface selector lists all the available MTTSM interfaces found in _"FlyWithLua/Modules/PiperTTSManager/Interfaces"_ at script startup. Pressing the _"Rescan"_ button rescans that folder and rebuilds the list of available interfaces.   
 **Selecting an interface is only necessary for reviewing its settings or for editing it. All plugin interfaces stored in the interface folder are automatically processed at X-Plane session start and continuously monitored as long as X-Plane is running!**
 
 &nbsp;
 
-**5.2 - UI: Interface settings (non-edit mode)**
+**UI: Interface settings (non-edit mode)**
 
 This is a multifunction menu which displays various interface information and interaction settings.    
 All changes made to the text input and selector boxes **only apply until the next interface rescan or script reload**. For permanent changes to an interface, use "Edit" mode (see below).     
@@ -145,7 +145,7 @@ Text input boxes additionally will lose any changes unless in "Edit" mode.
 
 &nbsp;
 
-**5.3 - UI: Interface settings (edit mode)**
+**UI: Interface settings (edit mode)**
 
 The edit mode for the interface can be enabled with the "Enable Edit Mode" button. Picking "Create New Interface" from the interface selector will automatically enter edit mode.   
 **When in edit mode, the watchdog that scans for input text files for text-to-speech processing is disabled.**   
@@ -154,7 +154,7 @@ Disabling edit mode for an existing interface after having made changes will ret
 
 &nbsp;
 
-**5.4 - UI: Testing area**
+**UI: Testing area**
 
 This interface element is **only visible when the _"None/Testing"_ interface is selected**.   
 The main purpose of this element is to provide a quick method to check that PTTSM is working properly.   
@@ -162,15 +162,20 @@ Enter a string that should be spoken, pick a voice and hit the _"Speak"_ button.
  
  &nbsp;
 
-**5.5 - Settings File**
+**Settings File**
 
 The path to PTTSM's settings file is: _"FlyWithLua/Modules/PiperTTSManager/settings.cfg"_. You can edit or delete it when X-Plane is not running.
 
 &nbsp;
 
-**5.6 - Log**
+**Troubleshooting**
 
-PTTSM writes its log to: _"FlyWithLua/Modules/PiperTTSManager/PTTSM_Log.txt"_. The log is regenerated at every script start.
+These are generic troubleshooting hints:
+
+- After having installed PTTSM, use the "Testing" interface with FlyWithLua output to check if PTTSM is working properly.
+- PTTSM writes its log to: _"FlyWithLua/Modules/PiperTTSManager/PTTSM_Log.txt"_. The log is regenerated at every script start.
+- Enabling "Debug Mode" from the menu will provide extra log output.
+- On Linux, Piper prints to stdout, so launching X-Plane from a terminal will provide more debug realted output.
 
 [Back to table of contents](#toc)
 
