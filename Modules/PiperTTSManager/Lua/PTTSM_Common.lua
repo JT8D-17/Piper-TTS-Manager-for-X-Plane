@@ -20,12 +20,6 @@ PTTSM_Settings = {
     {"Debug",0},                -- Enable debug output
 }
 
---PTTSM_Get_TableVal(PTTSM_Settings,"WindowIsOpen",0,2)
---PTTSM_Get_TableVal(PTTSM_Settings,"Window",0,2)
---PTTSM_Get_TableVal(PTTSM_Settings,"Window",0,3)
---PTTSM_Get_TableVal(PTTSM_Settings,"Window",0,4)
---PTTSM_Get_TableVal(PTTSM_Settings,"Window",0,5)
-
 --[[
 
 LOGGING

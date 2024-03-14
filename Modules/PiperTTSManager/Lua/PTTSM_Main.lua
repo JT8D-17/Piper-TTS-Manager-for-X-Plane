@@ -11,9 +11,7 @@ VARIABLES (local to this module)
 ]]
 local PTTSM_PageTitle = "Server and Interface"      -- Page title
 local PTTSM_PageInitStatus = 0            -- Page initialization variable
-local PTTSM_BaseFolder_Abs = SYSTEM_DIRECTORY.."PiperTTSManager/Resources/"
 local PTTSM_BaseFolder = MODULES_DIRECTORY.."PiperTTSManager/Resources/"
-
 local PTTSM_InterfFolder = MODULES_DIRECTORY.."PiperTTSManager/Interfaces"
 local PTTSM_TempFile = MODULES_DIRECTORY.."PiperTTSManager/temp.wav" -- Temporary output file for loudness correction
 
@@ -185,7 +183,7 @@ local function PTTSM_InputFromFile(interface)
         if PTTSM_Get_TableVal(PTTSM_Settings,"Debug",0,2) == 1 then
             --lfs.mkdir()
             local file = io.open(PTTSM_ServerProcessQueue[1][3],"r") -- Check for presence of output WAV
-            local bitrate = 44100 -- Divider tro calculate audio length
+            local bitrate = 44100 -- Divider to calculate audio length
             if file ~= nil then
                 local fsize = MTTS_GetFileSize(file)
                 PTTSM_Log_Write("PTTSM: Filesize is "..fsize.." bytes; length is "..(fsize/bitrate).." seconds")
@@ -197,7 +195,7 @@ local function PTTSM_InputFromFile(interface)
     -- If playback is set to FWL, play WAV file there
     if PTTSM_Get_TableVal(inputtable[tabindex][2],"Output",0,4) == "FlyWithLua" then
         local out_wav = PTTSM_PathConstructor(interface,"Output","Full")
-        local bitrate = 44100 -- Divider tro calculate audio length
+        local bitrate = 44100 -- Divider to calculate audio length
         local f = io.open(out_wav,"r") -- Check for presence of output WAV
         if f ~= nil then
             local fsize = MTTS_GetFileSize(f)
@@ -244,7 +242,7 @@ local function PTTSM_GetFileList(inputdir,outputtable,filter)
     local resfile = nil
     if SYSTEM == "IBM" then resfile = io.popen('dir "'..inputdir..'" /b')
     elseif SYSTEM == "LIN" then resfile = io.popen('ls -AU1N "'..inputdir..'"')
-    elseif SYSTEM == "APL" then 
+    elseif SYSTEM == "APL" then resfile = io.popen('ls -AU1 "'..inputdir..'"')
     else return end
     if resfile ~= nil then
         if filter == "voice" then for i= 1, #outputtable do outputtable[i] = nil end end -- Reset output table
